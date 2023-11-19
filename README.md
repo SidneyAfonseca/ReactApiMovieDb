@@ -1,4 +1,4 @@
-# Atividade 03 - ReactJs - MovieDb corusel
+# Atividade 03 - ReactJs - MovieDb carousel
 
 ## Instalaçao
 
