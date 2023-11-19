@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Form, Card, Col, Row } from "react-bootstrap";
 import { MovieDetails } from "../../types";
+import moment from "moment";
 
 interface ModalMovieDetailsProps {
   showModal: boolean;
@@ -24,7 +25,6 @@ const ModalMovieDetails: React.FC<ModalMovieDetailsProps> = ({
       <br />
     </>
   );
-
   return (
     <Modal show={showModal} onHide={handleCloseModal} size="lg">
       {selectedMovie && (
@@ -57,16 +57,14 @@ const ModalMovieDetails: React.FC<ModalMovieDetailsProps> = ({
                 {renderFormItem("Popularidade", selectedMovie.popularity)}
                 {renderFormItem("Descrição", selectedMovie.overview)}
                 {renderFormItem("Tagline", selectedMovie.tagline)}
-                {renderFormItem(
-                  "Data de Lançamento",
-                  selectedMovie.release_date
+                {renderFormItem("Data de Lançamento", moment(selectedMovie.release_date).format("DD/MM/YYYY")
                 )}
-                {renderFormItem("Duração do filme", selectedMovie.runtime)}
+                {renderFormItem("Duração do filme", selectedMovie.runtime + " min")}
                 {renderFormItem(
                   "Gênero",
                   selectedMovie.genres?.map((genre) => genre.name).join(", ")
                 )}
-                {renderFormItem("Receita gerada", selectedMovie.revenue)}
+                {renderFormItem("Receita gerada R$ ", selectedMovie.revenue.toLocaleString('pt-BR'))}
                 {renderFormItem("Imbd", selectedMovie.imdb_id)}
               </Col>
             </Row>
